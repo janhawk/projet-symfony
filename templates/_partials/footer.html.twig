@@ -1,4 +1,8 @@
-<div class="container-fluid bg-dark text-light">
+ {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
+{% endblock %}
+
+{# <div class="container-fluid bg-dark text-light">
     <div class="row text-center p-5">
         <div class="col-4">
             <h5>Information</h5>
@@ -16,4 +20,26 @@
             </div>
         </div>
     </div>
+</div> #}
+
+
+<div class="row bg-dark text-light " id="information">
+            <div class="container-fluid  text-light p-2">
+                <h3 class="text-center pt-2">Information</h3>
+            </div>
+</div>
+<div class="container-fluid bg-dark text-light p-2">
+<ul>
+	<li><a class="nav-link text-light" href="{{ path('home') }}">A propos de J-Market</a></li>
+	<li><a class="nav-link text-light" href="fruits">Information légales</a></li>
+	<li><a class="nav-link text-light" href="surgeles">Information Produits</a></li>
+	<li><a class="nav-link text-light" href="#">Moyens de paiement</a></li>
+    <li><a class="nav-link text-light" href="#">Ma carte de fidelité</a></li>
+    
+</ul>
+</div>
+<div class="row" id="copyright">
+            <div class="container-fluid bg-dark text-light p-2">
+                <p class="text-center pt-2">Copyright - Jan</p>
+            </div>
 </div>
