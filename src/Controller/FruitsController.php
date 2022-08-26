@@ -50,21 +50,21 @@ class FruitsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) { 
 
-            $fruitss = $fruitsRepository->findAll(); 
-            $fruitsNames = []; 
-            foreach ($fruitss as $fruits) { 
-                $fruitsNames[] = strtolower($fruits->getName()); 
-            }
-            if (in_array(strtolower($form['name']->getData()), $fruitsNames)) { 
-                $this->addFlash('danger', 'Le produit n\'a pas pu être créé : le nom de produit est déjà utilisé');
-                return $this->redirectToRoute('admin_fruits');
-            }
+            // $fruitss = $fruitsRepository->findAll(); 
+            // $fruitsNames = []; 
+            // foreach ($fruitss as $fruits) { 
+            //     $fruitsNames[] = strtolower($fruits->getName()); 
+            // }
+            // if (in_array(strtolower($form['name']->getData()), $fruitsNames)) { 
+            //     $this->addFlash('danger', 'Le produit n\'a pas pu être créé : le nom de produit est déjà utilisé');
+            //     return $this->redirectToRoute('admin_fruitss');
+            // }
 
             $infoImg1 = $form['img1']->getData(); 
 
             if (empty($infoImg1)) { 
                 $this->addFlash('danger', 'Le produit n\'a pas pu être créé : l\'image principale est obligatoire mais n\'a pas été renseignée');
-                return $this->redirectToRoute('admin_fruits');
+                return $this->redirectToRoute('admin_fruitss');
             }
 
             $extensionImg1 = $infoImg1->guessExtension();
@@ -80,7 +80,7 @@ class FruitsController extends AbstractController
             $manager->flush();
 
             $this->addFlash('success', 'Le produit a bien été créé'); // message de succès
-            return $this->redirectToRoute('admin_fruits');
+            return $this->redirectToRoute('admin_fruitss');
         }
 
         return $this->render('fruits/form.html.twig', [

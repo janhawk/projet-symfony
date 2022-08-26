@@ -1,0 +1,36 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}{{ app.request.attributes.get('_route') == 'category_create' ? 'création' : 'modification' }} catégorie{% endblock %}
+
+{% block body %}
+
+    <h1 class="mb-5">{{ app.request.attributes.get('_route') == 'category_create' ? 'Créer' : 'Modifier' }} une catégorie</h1>
+
+    {{ form_start(form) }}
+
+        <div class="row">
+            <div class="col-6 offset-3">
+                {{ form_row(form.name, {
+                    'label': 'Nom'
+                }) }}
+            </div>
+            <div class="col-6 offset-3">
+                {{ form_row(form.img, {
+                    'label': 'Image'
+                }) }}
+            </div>
+            <div class="col-6 offset-3">
+                {{ form_row(form.description) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 offset-3 text-end my-3">
+                <a href="{{ path('admin_categories') }}" class="btn btn-outline-danger me-3">Annuler</a>
+                <button class="btn btn-success">{{ app.request.attributes.get('_route') == 'category_create' ? 'Créer' : 'Modifier' }} </button>
+            </div>
+        </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

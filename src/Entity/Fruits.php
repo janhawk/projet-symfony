@@ -21,13 +21,20 @@ class Fruits
     private ?int $poids = null;
 
     #[ORM\Column]
-    private ?int $price = null;
+    private ?float $price = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $slug = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $img1 = null;
+
+    // ajouter quantity
+    // ajouter volume (nullable)
+    // passer poids en nullable
 
     public function getId(): ?int
     {
@@ -58,12 +65,12 @@ class Fruits
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?float
     {
         return $this->price;
     }
 
-    public function setPrice(int $price): self
+    public function setPrice(float $price): self
     {
         $this->price = $price;
 
@@ -93,4 +100,18 @@ class Fruits
 
         return $this;
     }
+
+    public function getImg1(): ?string
+    {
+        return $this->img1;
+    }
+
+    public function setImg1(string $img1): self
+    {
+        $this->img1 = $img1;
+
+        return $this;
+    }
+
+
 }

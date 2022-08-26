@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}product{% endblock %}
+
+{% block title %}product{% endblock %}
+
+{% block h1 %}product{% endblock %}
+
+{% block body %}
+<div class="container">
+        <div class="row my-5">
+            <div class="col-12">
+                <h1>product</h1>
+            </div>
+        </div>
+</div>
+              
+
+    {% for product in products %}
+        <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+            <div class="card">
+                <img src="{{ asset('img/product/' ~ product.img) }}" class="card-img-top p-3" alt="image principale du jeu {{ product.name }}">
+                {% if product.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                    <span class="new_product">Nouveauté</span>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.abstract|u.truncate(70, '...', false) }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ product.price|number_format(2, ',', ' ') }} €</li>
+                </ul>
+                <div class="card-body text-center">
+                    {# <a href="{{ path('product_show', {'slug': product.slug}) }}" class="card-link btn btn-outline-primary">Détails</a> #}
+                   <a href="#" class="card-link btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

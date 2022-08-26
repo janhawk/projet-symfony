@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Toutes les catégories de jeux disponibles sur Table Top Games {% endblock  %}
+
+{% block title %}catégories{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/category.css') }}">
+{% endblock %}
+
+{% block h1 %}Catégories{% endblock %}
+
+{% block body %}
+
+    {% for category in categories %}
+        <div class="col-3 p-3">
+            {# <a href="{{ path('category', {'slug': category.slug}) }}"> #}
+                <div class="card">
+                    {% if category.img %}
+                        <img src="{{ asset('img/category/' ~ category.img) }}" class="card-img-top p-3" alt="image de la catégorie {{ category.name }}" class="pe-3">
+                    {% elseif category.products|first %}
+                        <img src="{{ asset('img/product/' ~ category.products|first.img) }}" class="card-img-top p-3" alt="image de la catégorie {{ category.name }}" class="pe-3">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title btn btn-outline-primary">{{ category.name }}</h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+
+{% endblock %}

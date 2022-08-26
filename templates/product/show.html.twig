@@ -1,0 +1,74 @@
+{% extends "base.html.twig" %}
+
+{% block description %}{{ product.abstract|u.truncate(157, '...') }}{% endblock %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/product.css') }}">
+{% endblock %}
+
+{% block h1 %}{{ product.name }}{% endblock %}
+
+{% block body %}
+
+    <div class="col-md-8 col-lg-4 offset-md-2 offset-lg-1">
+        <div class="row mb-4">
+            <img src="{{ asset('img/product/' ~ product.img) }}" alt="photo principale du jeu {{ product.name }}" class="w-100">
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="{{ asset('img/product/' ~ product.img) }}" alt="photo secondaire du jeu {{ product.name }}" class="w-100">
+            </div>
+            {# {% if product.img2 != null %}
+                <div class="col-4">
+                    <img src="{{ asset('img/product/' ~ product.img2) }}" alt="photo secondaire du jeu {{ product.name }}" class="w-100">
+                </div>
+            {% endif %}
+            {% if product.img3 != null %}
+                <div class="col-4">
+                    <img src="{{ asset('img/product/' ~ product.img3) }}" alt="photo secondaire du jeu {{ product.name }}" class="w-100">
+                </div>
+            {% endif %} #}
+        </div>
+    </div>
+    <div class="col-md-8 col-lg-5 offset-md-2 offset-lg-1 mt-5 mt-lg-0">
+        <h2>{{ product.name }}</h2>
+        <hr class="text-secondary">
+        <div class="my-4">
+            <p class="fs-3">
+                {{ product.price|number_format(2, ',', ' ') }} €
+                {% if product.quantity != 0 %}
+                    <span class="fs-4 text-success">En stock</span>
+                {% else %}
+                    <span class="fs-4 text-danger">Rupture de stock</span>
+                {% endif %}
+            </p>
+            <p>{{ product.abstract }}</p>
+            <p>
+                <span class="badge bg-secondary p-2 me-2">{{ product.minPlayers }} à {{ product.maxPlayers }} joueur(s)</span>
+                <span class="badge bg-secondary p-2 me-2">Environ {{ product.duration|date('h') > 0 ? product.duration|date('h') * 60 + product.duration|date('i') : product.duration|date('i') }} minutes</span>
+                <span class="badge bg-secondary p-2">À partir de {{ product.minimumAge }} an(s)</span>
+            </p>
+        </div>
+        <hr class="text-secondary">
+        <div class="my-4">
+            <p>Éditeur : {{ product.editor }}</p>
+            <p>Thème(s) : {{ product.theme }}</p>
+            <p>Mécanisme(s) : {{ product.mecanism }}</p>
+        </div>
+        <hr class="text-secondary">
+        <div class="mt-4">
+            <p class="text-end">
+                <a href="#" class="btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}">Ajouter au panier</a>
+            </p>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-8 col-lg-10 offset-md-2 offset-lg-1">
+            <h2>Description</h2>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+
+{% endblock %}

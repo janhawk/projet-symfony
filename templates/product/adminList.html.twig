@@ -15,19 +15,19 @@
                 <th>Nom</th>
                 <th>Prix</th>
                 <th>Catégorie</th>
-                <th>Actions</th>
+                {# <th>Actions</th> #}
             </tr>
         </thead>
         <tbody>
-            {% for fruits in fruitss|reverse %}
+            {% for product in products|reverse %}
                 <tr>
                     <td>{{ loop.revindex }}</td>
-                    <td class="text-start"><img src="{{ asset('img/fruits/' ~ fruits.img) }}" alt="image principale du jeu {{ fruits.name }}" class="pe-3"> {{ fruits.name }}</td>
-                    <td>{{ fruits.price|number_format(2, ',', ' ') }} €</td>
-                    <td>{{ fruits.category.name }}</td>
+                    <td class="text-start"><img src="{{ asset('img/product/' ~ product.img) }}" alt="image principale du jeu {{ product.name }}" class="pe-3"> {{ product.name }}</td>
+                    <td>{{ product.price|number_format(2, ',', ' ') }} €</td>
+                    <td>{{ product.category.name }}</td>
                     <td>
-                        <a href="{{ path('fruits_update', {'id': fruits.id}) }}"><i class="bi bi-pencil-square text-primary"></i></a>
-                        <a href="{{ path('fruits_delete', {'id': fruits.id}) }}"><i class="bi bi-trash3 text-danger"></i></a>
+                        <a href="{{ path('product_update', {'id': product.id}) }}"><i class="bi bi-pencil-square text-primary"></i></a>
+                        <a href="{{ path('product_delete', {'id': product.id}) }}"><i class="bi bi-trash3 text-danger"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -35,7 +35,7 @@
     </table>
 
     <div class="text-end mt-4">
-        <a href="{{ path('fruits_create') }}" class="btn btn-success">Ajouter un produit</a>
+        <a href="{{ path('product_create') }}" class="btn btn-success">Ajouter un produit</a>
     </div>
     
 {% endblock %}

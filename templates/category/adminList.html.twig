@@ -1,0 +1,51 @@
+{% extends "baseAdmin.html.twig" %}
+
+{% block title %}catégories{% endblock %}
+
+{% block body %}
+
+    <h1 class="pb-5">Liste des catégories</h1>
+    
+    <table class="table table-hover table-sm texxt-center align-middle text-center">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories|reverse %}
+                <tr>
+                    <td>{{ loop.revindex }}</td>
+                    <td class="text-start">
+                        {% if category.img %}
+                            <img src="{{ asset('img/category/' ~ category.img) }}" alt="image de la catégorie {{ category.name }}" class="pe-3">
+                        {% elseif category.products|first %}
+                            {# {% set product = category.products|first %} #}
+                            <img src="{{ asset('img/product/' ~ category.products|first.img) }}" alt="image de la catégorie {{ category.name }}" class="pe-3">
+                        {% endif %} 
+                        {{ category.name }}
+                    </td>
+                    <td>
+                        {% if category.description %}
+                            {{ category.description }}
+                        {% else %}
+                            pas de description
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('category_update', {'id': category.id}) }}"><i class="bi bi-pencil-square text-primary"></i></a>
+                        <a href="{{ path('category_delete', {'id': category.id}) }}"><i class="bi bi-trash3 text-danger"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-end mt-4">
+        <a href="{{ path('category_create') }}" class="btn btn-success">Ajouter une catégorie</a>
+    </div>
+
+{% endblock %}

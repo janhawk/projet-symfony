@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Liste des produits de la catégorie {{ category.name }}{% endblock %}
+
+{% block title %}Category{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/category.css') }}">
+{% endblock %}
+
+{% block h1 %}{{ category.name }}{% endblock %}
+
+{% block body %}
+
+    {# image de la catégorie si elle existe #}
+    {# description de la catégorie si elle existe #}
+
+    {% for product in category.products %}
+        <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+            <div class="card">
+                <img src="{{ asset('img/product/' ~ product.img) }}" class="card-img-top p-3" alt="image principale du jeu {{ product.name }}">
+                {% if product.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                    <span class="new_product">Nouveauté</span>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.abstract|u.truncate(70, '...', false) }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ product.minPlayers }} à {{ product.maxPlayers }} joueur(s)</li>
+                    <li class="list-group-item">{{ product.price|number_format(2, ',', ' ') }} €</li>
+                </ul>
+                <div class="card-body text-center">
+                    <a href="{{ path('product_show', {'slug': product.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                    <a href="#" class="card-link btn btn-{{ product.quantity != 0 ? 'success' : 'danger disabled' }}"><i class="bi bi-cart-plus-fill"></i></a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-12 text-center">
+            Aucun produit dans cette catégorie
+        </div>
+    {% endfor %}
+
+{% endblock %}

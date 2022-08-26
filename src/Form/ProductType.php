@@ -2,19 +2,20 @@
 
 namespace App\Form;
 
-use App\Entity\Fruits;
+use App\Entity\Product;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
-class FruitsType extends AbstractType
+class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -24,11 +25,11 @@ class FruitsType extends AbstractType
                 'maxLength' => 100
             ]
         ])
-        ->add('poids', IntegerType::class, [
+        ->add('quantity', IntegerType::class, [
             'attr' => [
                 'min' => 0,
                 'max' => 9999.99,
-                'step' => 0.01
+                'step' => 1
             ]
         ])
         ->add('price', NumberType::class, [
@@ -43,7 +44,11 @@ class FruitsType extends AbstractType
                 'maxLength' => 255
             ]
         ])
-        ->add('img1', FileType::class, [
+        ->add('category', EntityType::class, [
+            'class' =>  Category::class, 
+            'choice_label' => 'name',
+        ])
+        ->add('img', FileType::class, [
             'required' => false,
             'mapped' => false,
             'help' => 'png, jpg, jpeg, jp2 ou webp - 1 Mo maximum',
@@ -62,14 +67,13 @@ class FruitsType extends AbstractType
                 ])
             ]
         ])
-        // ->add('submit', SubmitType::class)
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Fruits::class,
+            'data_class' => Product::class,
         ]);
     }
 }

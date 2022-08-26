@@ -16,12 +16,25 @@
 </div>
               
 
-{# <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> #}
+    {% for fruits in fruitss %}
+        <div class="col-md-6 col-lg-4 col-xl-3 p-3">
+            <div class="card">
+                <img src="{{ asset('img/fruits/' ~ fruits.img) }}" class="card-img-top p-3" alt="image principale du jeu {{ product.name }}">
+                {% if fruits.createdAt|date('Y-m-d') >= "now"|date_modify("-20 day")|date('Y-m-d') %}
+                    <span class="new_fruits">Nouveauté</span>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ fruits.name }}</h5>
+                    <p class="card-text">{{ fruits.abstract|u.truncate(70, '...', false) }}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{ fruits.price|number_format(2, ',', ' ') }} €</li>
+                </ul>
+                <div class="card-body text-center">
+                    <a href="{{ path('fruits_show', {'slug': fruits.slug}) }}" class="card-link btn btn-outline-primary">Détails</a>
+                  
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
