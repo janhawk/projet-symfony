@@ -1,0 +1,72 @@
+{% extends "baseAdmin.html.twig" %}
+
+{# {% include "_partials/header.html.twig" %}
+
+{% extends "_partials/header.html.twig" %} #}
+
+{% block title %}création produit{% endblock %}
+
+{% block body %}
+<h1>{{ form_title }}</h1>
+
+{{ form_start(fruitsFormt) }}
+
+        <div class="row">
+            <div class="col-6">
+                {# {{ form_row(productForm.name) }} #}
+                {{ form_label(fruitsForm.name, 'Nom') }}
+                {{ form_errors(fruitsForm.name) }}
+                {{ form_widget(fruitsForm.name, {
+                    'attr': {
+                        'placeholder': 'Ex.: Jan'
+                    }
+                }) }}
+                {{ form_help(fruitsForm.name) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(fruitsForm.poids, {
+                    'label': 'Poids',
+                    'attr': {
+                        'placeholder': 'Ex.: 572g'
+                    }
+                }) }}
+            </div>
+            {# <div class="col-3">
+                {{ form_row(fruitsForm.price, {
+                    'label': 'Prix (en €)',
+                    'attr': {
+                        'placeholder': 'Ex.: 123.45'
+                    }
+                }) }}
+            </div> #}
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                {{ form_row(fruitsForm.price, {
+                    'label': 'Prix (en €)',
+                    'attr': {
+                        'placeholder': 'Ex.: 123.45'
+                    }
+                }) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(productForm.price, {
+                    'label': 'Prix (en €)',
+                    'attr': {
+                        'placeholder': 'Ex.: 123.45'
+                    }
+                }) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-end my-3">
+                <a href="{{ path('admin_fruitss')}}" class="btn btn-outline-danger me-3">Annuler</a>
+                <button class="btn btn-success">Créer</button>
+            </div>
+        </div>
+
+    {{ form_end(fruitsForm) }}
+
+{% endblock %}
