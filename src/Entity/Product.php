@@ -37,12 +37,14 @@ class Product
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    // #[ORM\Column(length: 100)]
-    // private ?string $slug = null;
 
     public function __construct()
     {
         $this->category_id = new ArrayCollection();
+    }
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function getName(): ?string

@@ -53,8 +53,8 @@ class ProductController extends AbstractController
 
             $products = $productRepository->findAll(); 
             $productNames = []; 
-            foreach ($products as $product) { 
-                $productNames[] = strtolower($product->getName()); 
+            foreach ($products as $productDb) { 
+                $productNames[] = strtolower($productDb->getName()); 
             }
             if (in_array(strtolower($form['name']->getData()), $productNames)) { 
                 $this->addFlash('danger', 'Le produit n\'a pas pu être créé : le nom de produit est déjà utilisé');
@@ -72,10 +72,6 @@ class ProductController extends AbstractController
             $nomImg= time() . '-1.' . $extensionImg;
             $infoImg->move($this->getParameter('product_image_dir'), $nomImg); 
             $product->setImg($nomImg); 
-
-            // $slugger = new AsciiSlugger();
-            // $product->setSlug(strtolower($slugger->slug($form['name']->getData()))); 
-            // $product->setCreatedAt(new DateTimeImmutable());
 
             $manager = $managerRegistry->getManager();
             $manager->persist($product);
@@ -98,33 +94,24 @@ class ProductController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // $products = $productRepository->findAll(); // récupère tous les produits en base de données
-            // $productNames = []; // initialise un tableau pour les noms de produits
-            // foreach ($products as $product) { // pour chaque produit récupéré
-            //     $productNames[] = $product->getName(); // stocke le nom du produit dans le tableau
-            // }
-            // if (in_array($form['name']->getData(), $productNames)) { // vérifie si le nom du produit à créer n'est pas déjà utilisé en base de données
-            //     $this->addFlash('danger', 'Le produit n\'a pas pu être modifié : le nom de produit est déjà utilisé');
-            //     return $this->redirectToRoute('admin_products');
-            // }
+    
 
-            $infoImg = $form['img']->getData(); // récupère les informations de l'image 1 dans le formulaire
-            if ($infoImg !== null) { // s'il y a bien une image donnée dans le formulaire
-                $oldImgName = $product->getImg(); // récupère le nom de l'ancienne image
-                $oldImgPath = $this->getParameter('product_image_dir') . '/' . $oldImgName; // récupère le chemin de l'ancienne image 1
+            $infoImg = $form['img']->getData(); 
+            if ($infoImg !== null) { 
+                $oldImgName = $product->getImg(); 
+                $oldImgPath = $this->getParameter('product_image_dir') . '/' . $oldImgName; 
                 if (file_exists($oldImgPath)) {
-                    unlink($oldImgPath); // supprime l'ancienne image 1
+                    unlink($oldImgPath); 
                 }
-                $extensionImg = $infoImg->guessExtension(); // récupère l'extension de fichier de l'image 1
-                $nomImg = time() . '-1.' . $extensionImg; // crée un nom de fichier unique pour l'image 1
-                $infoImg->move($this->getParameter('product_image_dir'), $nomImg); // télécharge le fichier dans le dossier adéquat
-                $product->setImg($nomImg); // définit le nom de l'image à mettre ne base de données
+                $extensionImg = $infoImg->guessExtension(); 
+                $nomImg = time() . '-1.' . $extensionImg; 
+                $infoImg->move($this->getParameter('product_image_dir'), $nomImg);
+                $product->setImg($nomImg); 
             }
 
 
 
-            // $slugger = new AsciiSlugger();
-            // $product->setSlug(strtolower($slugger->slug($form['name']->getData())));
+          
             $manager = $managerRegistry->getManager();
             $manager->persist($product);
             $manager->flush();
