@@ -1,31 +1,14 @@
-{# <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link" href="{{ path('home') }}">Accueil</a>
-                <a class="nav-link" href="fruits">Fruits, Legumes</a>
-                <a class="nav-link" href="surgeles">Surgelés</a>
-                <a class="nav-link" href="#">Epicerie sucrée</a>
-                <a class="nav-link" href="#">Boissons</a>
-            </div>
-        </div>
-    </div>
-</nav>
- #}
-
  {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 {% endblock %}
-<ul>
+
+<ul class="header">
 	<li><a class="nav-link" href="{{ path('home') }}">Accueil</a></li>
 	<li><a class="nav-link" href="{{ path('admin_products') }}">Les Produits</a></li>
-	<li><a class="nav-link" href="surgeles">Surgelés</a></li>
-	<li><a class="nav-link" href="#">Epicerie sucrée</a></li>
+	<li><a class="nav-link" href="{{ path('admin_categories') }}">Catégories</a></li>
+	<li><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
     <li><a class="nav-link" href="{{ path('login') }}">Connexion</a></li>
+    <li><a class="nav-link" href="{{ path('logout') }}">Déconnexion</a></li>
     
 </ul>
 

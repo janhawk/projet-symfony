@@ -1,27 +1,6 @@
- {% block stylesheets %}
+ {# {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
-{% endblock %}
-
-{# <div class="container-fluid bg-dark text-light">
-    <div class="row text-center p-5">
-        <div class="col-4">
-            <h5>Information</h5>
-            <hr class="m-3"></hr>
-            <ul>
-                <li><a href="{{ path('home') }}" class="text-light">Accueil</a></li>
-                <li><a href="#" class="text-light">Catégories</a></li>
-                <li><a href="product" class="text-light">Produits</a></li>
-                <li><a href="#" class="text-light">Connexion</a></li>   
-            </ul>
-        </div>
-        <div class="row" id="copyright">
-            <div class="container-fluid bg-dark text-light p-2">
-                <p class="text-center pt-2">Copyright - Jan</p>
-            </div>
-        </div>
-    </div>
-</div> #}
-
+{% endblock %} #}
 
 <div class="row bg-dark text-light " id="information">
             <div class="container-fluid  text-light p-2">
@@ -29,7 +8,7 @@
             </div>
 </div>
 <div class="container-fluid bg-dark text-light p-2">
-<ul>
+<ul id="footer">
 	<li><a class="nav-link text-light" href="{{ path('home') }}">A propos de J-Market</a></li>
 	<li><a class="nav-link text-light" href="fruits">Information légales</a></li>
 	<li><a class="nav-link text-light" href="surgeles">Information Produits</a></li>

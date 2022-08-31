@@ -1,5 +1,16 @@
+
 twig:
     default_path: '%kernel.project_dir%/templates'
+    form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        contact_company: 'J-Market'
+        contact_address: '12 rue du Paris'
+        contact_zip: '45678'
+        contact_city: 'Paris'
+        contact_phone: '01 33 44 55 77 88'
+        contact_email: 'contact@j-market.com'
+    paths:
+        'public/img': images
 
 when@test:
     twig:

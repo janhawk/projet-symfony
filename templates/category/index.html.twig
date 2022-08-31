@@ -14,7 +14,6 @@
 
     {% for category in categories %}
         <div class="col-3 p-3">
-            {# <a href="{{ path('category', {'slug': category.slug}) }}"> #}
                 <div class="card">
                     {% if category.img %}
                         <img src="{{ asset('img/category/' ~ category.img) }}" class="card-img-top p-3" alt="image de la catégorie {{ category.name }}" class="pe-3">

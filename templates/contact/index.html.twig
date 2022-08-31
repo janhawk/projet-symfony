@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Remplissez le formulaire pour nous contacter et nous vous répondrons dans les plus brefs délais.{% endblock %}
+
+{% block title %}contact{% endblock %}
+
+{% block h1 %}Contact{% endblock %}
+
+{% block body %}
+
+
+    <div class="my-5">
+        <h2 class="mb-3">Coordonnées</h2>
+        <ul class="coordonees text-center p-0">
+            <li>{{ contact_company }}</li>
+            <li>{{ contact_address }}</li>
+            <li>{{ contact_zip }} {{ contact_city }}</li>
+            <li>{{ contact_phone }}</li>
+            <li>{{ contact_email }}</li>
+        </ul>
+    </div>
+    
+    {{ form_start(contactForm) }}
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+    {{ form_end(contactForm) }}
+
+{% endblock %}
+{# {% block footer %}
+        <ul class="coordonees text-center p-0">
+            <li>{{ contact_company }}</li>
+            <li>{{ contact_address }}</li>
+            <li>{{ contact_zip }} {{ contact_city }}</li>
+            <li>{{ contact_phone }}</li>
+            <li>{{ contact_email }}</li>
+        </ul>
+{% endblock %} #}
