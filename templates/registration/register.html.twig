@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block description %}Créez votre compte Table Top Games{% endblock %}
+
+{% block title %}inscription{% endblock %}
+
+{% block h1 %}Inscription{% endblock %}
+
+{% block body %}
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    {{ form_start(registrationForm) }}
+
+        <div class="row">
+            <div class="col-md-6 form-control">
+                {{ form_row(registrationForm.first_name) }}
+            </div>
+            <div class="col-10 offset-1 col-md-6 offset-md-0 col-lg-4 form-control">
+                {{ form_row(registrationForm.last_name) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-10 offset-1 col-md-6 offset-md-0 col-lg-4 offset-lg-2 form-control">
+                {{ form_row(registrationForm.email) }}
+            </div>
+            <div class="col-10 offset-1 col-md-6 offset-md-0 col-lg-4 form-control">
+                {{ form_row(registrationForm.phone) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-10 offset-1 col-md-6 offset-md-0 col-lg-4 offset-lg-2 form-control">
+                {{ form_row(registrationForm.plainPassword.first, {
+                    label: 'Mot de passe'
+                }) }}
+            </div>
+            <div class="col-10 offset-1 col-md-6 offset-md-0 col-lg-4 form-control">
+                {{ form_row(registrationForm.plainPassword.second, {
+                    label: 'Répétez le mot de passe'
+                }) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-10 offset-1 offset-md-0 col-lg-8 offset-lg-2 form-control">
+                {{ form_row(registrationForm.agreeTerms, {
+                    'label': 'J\'accepte les Conditions Générales d\'Utilisation'
+                }) }}
+            </div>
+        </div>
+
+        <div class="row text-end mt-3">
+            <div class="col-10 offset-1 col-md-12 offset-md-0 col-lg-8 offset-lg-2">
+                <a href="{{ path('home') }}" class="btn btn-outline-danger me-3">Annuler</a>
+                <button type="submit" class="btn btn-success">S'inscrire</button>
+            </div>
+        </div>
+
+    {{ form_end(registrationForm) }}
+
+{% endblock %}

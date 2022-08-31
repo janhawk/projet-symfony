@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Product;
 use App\Entity\Category;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\Collection;
@@ -28,6 +29,10 @@ class Category
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Product::class)]
     private Collection $products;
+
+
+    // #[ORM\Column]
+    // private ?\DateTimeImmutable $created_at = null;
 
     public function __construct()
     {
@@ -104,4 +109,17 @@ class Category
 
         return $this;
     }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
 }

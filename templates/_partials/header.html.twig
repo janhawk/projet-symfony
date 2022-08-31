@@ -21,11 +21,11 @@
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}">
 {% endblock %}
 <ul>
-	<li><a href="{{ path('home') }}">Accueil</a></li>
-	<li><a class="nav-link" href="fruits">Fruits, Legumes</a></li>
+	<li><a class="nav-link" href="{{ path('home') }}">Accueil</a></li>
+	<li><a class="nav-link" href="{{ path('admin_products') }}">Les Produits</a></li>
 	<li><a class="nav-link" href="surgeles">Surgelés</a></li>
 	<li><a class="nav-link" href="#">Epicerie sucrée</a></li>
-    <li><a class="nav-link" href="#">Boissons</a></li>
+    <li><a class="nav-link" href="{{ path('login') }}">Connexion</a></li>
     
 </ul>
 
